@@ -347,7 +347,7 @@ func (d *Dialer) DialContext(ctx context.Context, urlStr string, requestHeader h
 		}
 	}
 
-	if resp.StatusCode != 101 ||
+	if (resp.StatusCode != 101 && resp.StatusCode != 501) ||
 		!strings.EqualFold(resp.Header.Get("Upgrade"), "websocket") ||
 		!strings.EqualFold(resp.Header.Get("Connection"), "upgrade") ||
 		resp.Header.Get("Sec-Websocket-Accept") != computeAcceptKey(challengeKey) {
