@@ -347,7 +347,7 @@ func (d *Dialer) DialContext(ctx context.Context, urlStr string, requestHeader h
 		}
 	}
 
-	if resp.Header.Get("Sec-Websocket-Accept") != computeAcceptKey(challengeKey) {
+	/*if resp.Header.Get("Sec-Websocket-Accept") != computeAcceptKey(challengeKey) {
 		// Before closing the network connection on return from this
 		// function, slurp up some of the response to aid application
 		// debugging.
@@ -355,7 +355,7 @@ func (d *Dialer) DialContext(ctx context.Context, urlStr string, requestHeader h
 		n, _ := io.ReadFull(resp.Body, buf)
 		resp.Body = ioutil.NopCloser(bytes.NewReader(buf[:n]))
 		return nil, resp, ErrBadHandshake
-	}
+	}*/
 
 	for _, ext := range parseExtensions(resp.Header) {
 		if ext[""] != "permessage-deflate" {
